@@ -10,15 +10,22 @@ import {
   useKeepGroupedColumnsHidden,
 } from '@mui/x-data-grid-premium';
 import Box from '@mui/material/Box';
+import {createTheme, ThemeProvider} from "@mui/material";
 
 const theme = createTheme({
-    components: {
-        // Name of the component
-        MuiButtonBase: {
-            defaultProps: {
-                // The props to change the default for.
-                disableRipple: true, // No more ripple, on the whole application 💣!
-            },
+    palette: {
+        type: 'light',
+    primary: {
+            main: "#O00000",
+    },
+    secondary: {
+            main: "#000000",
+    },
+},
+    typography: {
+        fontFamily: myFont,
+        h1:{
+            fontFamily: myFont
         },
     },
 });
@@ -51,10 +58,12 @@ export default function Log(props){
 
     return(
             <div className={myFont.className}>
+                <ThemeProvider theme={theme}>
                 <Links links = {links}/>
                 <Box className={"dataGrid"} sx ={{height: 465, width: 540}}>
                     <DataGridPremium  rows ={rows} columns ={columns} components={{ Toolbar: GridToolbar }} experimentalFeatures={{ aggregation: true }}/>
                 </Box>
+                </ThemeProvider>
             </div>
     )
 }
