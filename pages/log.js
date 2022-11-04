@@ -41,8 +41,8 @@ export default function Log(props){
     return(
             <div className={myFont.className}>
                 <Links links = {links}/>
-                <Box className={"dataGrid"} sx ={{height: 465, width: 800 }}>
-                    <DataGridPremium rows ={rows} columns ={columns} components={{ Toolbar: GridToolbar }} />
+                <Box className={"dataGrid"} sx ={{height: 465, width: 540 }}>
+                    <DataGridPremium  rows ={rows} columns ={columns} components={{ Toolbar: GridToolbar }} />
                 </Box>
             </div>
     )
