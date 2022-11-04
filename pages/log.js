@@ -1,5 +1,5 @@
 import {myFont} from "../app/myFont";
-import React from "react";
+import React, {useState} from "react";
 import Links from "../app/(components)/Links";
 import "../app/globals.css";
 import fetch from 'node-fetch';
@@ -34,21 +34,24 @@ export default function Log(props){
     }
     links.push({label: "...", href: '/'})
 
-    let rows = []
-
-    let columns = []
-
-    for (let elem in rows){
-
-    }
+    const [rows, setRows] = useState(getRows(props.logData))
+    const [columns, setColumns] = useState([{field: "id", headerName:"id", width: 150}, {field: "total", headerName: "total", width: 150}, {field: "status", headerName:"status", width: 150}])
 
 
     return(
             <div className={myFont.className}>
                 <Links links = {links}/>
                 <Box className={"dataGrid"} sx ={{height: 465, width: 800 }}>
-                    <DataGridPremium rows ={[]} columns ={[]} components={{ Toolbar: GridToolbar }} />
+                    <DataGridPremium rows ={rows} columns ={columns} components={{ Toolbar: GridToolbar }} />
                 </Box>
             </div>
     )
+}
+
+function getRows(data) {
+    let rows = []
+    for (let elem in data){
+        rows.push({id: data[elem].id, total: data[elem].total, status: data[elem].status })
+    }
+    return rows
 }
