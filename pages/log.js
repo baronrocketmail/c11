@@ -4,10 +4,10 @@ import Links from "../app/(components)/Links";
 import "../app/globals.css";
 import fetch from 'node-fetch';
 import {
-  DataGridPremium,
-  GridToolbar,
-  useGridApiRef,
-  useKeepGroupedColumnsHidden,
+    DataGridPremium,
+    GridToolbar, GridToolbarContainer, GridToolbarExport,
+    useGridApiRef,
+    useKeepGroupedColumnsHidden,
 } from '@mui/x-data-grid-premium';
 import Box from '@mui/material/Box';
 import {createTheme, ThemeProvider} from "@mui/material";
@@ -24,13 +24,17 @@ const theme = createTheme({
 },
     typography: {
         fontFamily: myFont,
-        h1:{
-            fontFamily: myFont
-        },
     },
 });
 
 
+function CustomToolbar() {
+    return (
+            <GridToolbarContainer>
+                <GridToolbarExport />
+            </GridToolbarContainer>
+            );
+}
 
 export async function getStaticProps(){
 
@@ -61,7 +65,7 @@ export default function Log(props){
                 <ThemeProvider theme={theme}>
                 <Links links = {links}/>
                 <Box className={"dataGrid"} sx ={{height: 465, width: 540}}>
-                    <DataGridPremium  rows ={rows} columns ={columns} components={{ Toolbar: GridToolbar }} experimentalFeatures={{ aggregation: true }} hideFooterRowCount = {true}/>
+                    <DataGridPremium rows ={rows} columns ={columns} components={{ Toolbar: GridToolbar }} experimentalFeatures={{ aggregation: true }} hideFooterRowCount = {true}/>
                 </Box>
                 </ThemeProvider>
             </div>
