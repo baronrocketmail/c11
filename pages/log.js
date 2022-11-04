@@ -11,6 +11,17 @@ import {
 } from '@mui/x-data-grid-premium';
 import Box from '@mui/material/Box';
 
+const theme = createTheme({
+    components: {
+        // Name of the component
+        MuiButtonBase: {
+            defaultProps: {
+                // The props to change the default for.
+                disableRipple: true, // No more ripple, on the whole application 💣!
+            },
+        },
+    },
+});
 
 
 
@@ -35,14 +46,14 @@ export default function Log(props){
     links.push({label: "...", href: '/'})
 
     const [rows, setRows] = useState(getRows(props.logData))
-    const [columns, setColumns] = useState([{field: "id", headerName:"id", width: 150}, {field: "total", headerName: "total", width: 150}, {field: "status", headerName:"status", width: 150}])
+    const [columns, setColumns] = useState([{field: "id", headerName:"id", width: 150}, {field: "status", headerName:"status", width: 150},  {field: "total", headerName: "total", width: 150, type: "number"}])
 
 
     return(
             <div className={myFont.className}>
                 <Links links = {links}/>
-                <Box className={"dataGrid"} sx ={{height: 465, width: 540 }}>
-                    <DataGridPremium  rows ={rows} columns ={columns} components={{ Toolbar: GridToolbar }} />
+                <Box className={"dataGrid"} sx ={{height: 465, width: 540}}>
+                    <DataGridPremium  rows ={rows} columns ={columns} components={{ Toolbar: GridToolbar }} experimentalFeatures={{ aggregation: true }}/>
                 </Box>
             </div>
     )
