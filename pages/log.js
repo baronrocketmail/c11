@@ -61,7 +61,7 @@ export default function Log(props){
                 <ThemeProvider theme={theme}>
                 <Links links = {links}/>
                 <Box className={"dataGrid"} sx ={{height: 465, width: 540}}>
-                    <DataGridPremium  rows ={rows} columns ={columns} components={{ Toolbar: GridToolbar }} experimentalFeatures={{ aggregation: true }}/>
+                    <DataGridPremium  rows ={rows} columns ={columns} components={{ Toolbar: GridToolbar }} experimentalFeatures={{ aggregation: true }} hideFooterRowCount = {true}/>
                 </Box>
                 </ThemeProvider>
             </div>
